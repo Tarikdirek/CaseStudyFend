@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { GetAllRolesResponse } from "../../models/roleModel/responses/getAllRolesResponse";
-import axios from "axios";
+import axiosInstance from "../../core/utilities/axiosInterceptors";
 
 
 interface GetAllRoles {
@@ -15,8 +15,8 @@ const initialState: GetAllRoles = {
 export const getAllRoles = createAsyncThunk(
   "getAllRoles",
   async () => {
-    const response = await axios.get<GetAllRolesResponse[]>(
-      `http://localhost:8080/api/v1/roles/getall`
+    const response = await axiosInstance.get<GetAllRolesResponse[]>(
+      `roles/getall`
     );
     return response.data;
   }

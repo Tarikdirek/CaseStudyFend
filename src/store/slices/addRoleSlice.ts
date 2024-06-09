@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { AddRoleRequest } from '../../models/roleModel/requests/addRoleRequest';
+import axiosInstance from '../../core/utilities/axiosInterceptors';
 
 interface AddRole {
   data: AddRoleRequest | null;
@@ -14,7 +14,7 @@ export const addRole = createAsyncThunk(
   'addRole',
   async (addRole: AddRoleRequest, { rejectWithValue }) => {
     try {
-      const response = await axios.post('http://localhost:8080/api/v1/roles/add', addRole);
+      const response = await axiosInstance.post('roles/add', addRole);
       return response.data;
     } catch (error: any) {
       if (error.response && error.response.data) {

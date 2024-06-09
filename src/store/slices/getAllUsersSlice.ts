@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { GetUserResponse } from "../../models/userModel/responses/getUserResponse";
-import axios from "axios";
+import axiosInstance from "../../core/utilities/axiosInterceptors";
 
 
 interface GetAllUsers {
@@ -15,8 +15,8 @@ const initialState: GetAllUsers = {
 export const getAllUsers = createAsyncThunk(
   "getAllUsers",
   async () => {
-    const response = await axios.get<GetUserResponse[]>(
-      `http://localhost:8080/api/v1/users/getall`
+    const response = await axiosInstance.get<GetUserResponse[]>(
+      `users/getall`
     );
     return response.data;
   }

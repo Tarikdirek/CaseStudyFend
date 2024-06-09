@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { LoginRequest } from '../../models/authModel/requests/loginRequest';
 import { AssignRoleRequest } from '../../models/roleModel/requests/assignRoleRequest';
+import axiosInstance from '../../core/utilities/axiosInterceptors';
 
 interface AssignRole {
   data: AssignRoleRequest | null;
@@ -15,7 +16,7 @@ export const postAssignRole = createAsyncThunk(
   'postAssignRole',
   async (assignRoleRequest: AssignRoleRequest, { rejectWithValue }) => {
     try {
-      const response = await axios.post('http://localhost:8080/api/v1/users/assignroletouser', assignRoleRequest);
+      const response = await axiosInstance.post('users/assignroletouser', assignRoleRequest);
       return response.data;
     } catch (error: any) {
       if (error.response && error.response.data) {

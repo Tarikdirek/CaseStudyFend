@@ -3,6 +3,8 @@ import LoginPage from './LoginPage'
 import AdminPanel from '../components/AdminPanel'
 import RoleAddPage from './RoleAddPage'
 import UserConfigPage from './UserConfigPage'
+import AdminRoute from '../guards/AdminRoute'
+import HompageCard from '../components/HompageCard'
 
 type Props = {}
 
@@ -11,9 +13,10 @@ const Dashboard = (props: Props) => {
     <>
         <Routes>
             <Route path="/" element={<LoginPage/>} />
-            <Route path="/adminpanel" element={<AdminPanel/>} />
-            <Route path='/roleadd' element={<RoleAddPage/>} />
-            <Route path="/userconfig" element={<UserConfigPage/>} />
+            <Route path="/adminpanel" element={<AdminRoute><AdminPanel/></AdminRoute>} />
+            <Route path='/roleadd' element={<AdminRoute><RoleAddPage/></AdminRoute>} />
+            <Route path="/userconfig" element={<AdminRoute><UserConfigPage/></AdminRoute>} />
+            <Route path="/homepage" element={<HompageCard/>} />
         </Routes>
        
     </>

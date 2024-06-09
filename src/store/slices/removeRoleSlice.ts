@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { RemoveRoleRequest } from '../../models/roleModel/requests/removeRoleRequest';
+import axiosInstance from '../../core/utilities/axiosInterceptors';
 
 interface RemoveRole {
   data: RemoveRoleRequest | null;
@@ -14,7 +14,7 @@ export const removeRole = createAsyncThunk(
   'removeRole',
   async (removeRole: RemoveRoleRequest, { rejectWithValue }) => {
     try {
-      const response = await axios.post('http://localhost:8080/api/v1/users/removerolefromuser', removeRole);
+      const response = await axiosInstance.post('users/removerolefromuser', removeRole);
       return response.data;
     } catch (error: any) {
       if (error.response && error.response.data) {

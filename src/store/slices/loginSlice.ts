@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { LoginRequest } from '../../models/authModel/requests/loginRequest';
+import axiosInstance from '../../core/utilities/axiosInterceptors';
 
 interface LogIn {
   data: LoginRequest | null;
@@ -16,7 +16,7 @@ export const postLogIn = createAsyncThunk(
   'login/postLogIn',
   async (logInRequest: LoginRequest, { rejectWithValue }) => {
     try {
-      const response = await axios.post('http://localhost:8080/api/v1/auth/login', logInRequest);
+      const response = await axiosInstance.post('auth/login', logInRequest);
       return response.data;
     } catch (error: any) {
       if (error.response && error.response.data) {

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { GetUserResponse } from "../../models/userModel/responses/getUserResponse";
-import axios from "axios";
+import axiosInstance from "../../core/utilities/axiosInterceptors";
 
 
 interface GetUser {
@@ -15,8 +15,8 @@ const initialState: GetUser = {
 export const getUser = createAsyncThunk(
   "getUser",
   async (name: string | undefined) => {
-    const response = await axios.get<GetUserResponse>(
-      `http://localhost:8080/api/v1/users/getbyname?name=${name}`
+    const response = await axiosInstance.get<GetUserResponse>(
+      `users/getbyname?name=${name}`
     );
     return response.data;
   }

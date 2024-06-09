@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 type Props = {};
 
-const Navbar = (props: Props) => {
+const HompageCard = (props: Props) => {
 
     const navigate = useNavigate();
     const handleLogout = () => {
@@ -16,11 +16,7 @@ const Navbar = (props: Props) => {
             <div className='container'>
                 <nav className="navbar navbar-expand-lg bg-body-tertiary">
                     <div className="container-fluid">
-                        <Link className="navbar-brand m-2" to="/adminpanel">Management Panel</Link>
-                        <span className="m-2">|</span> 
-                        <Link className="nav-link active m-2" aria-current="page" to="/roleadd">Roles</Link>
-                        <span className="m-2">|</span> 
-                        <Link className="nav-link m-2" to="/userconfig">Users</Link>
+                        <Link className="navbar-brand m-2" to="/homepage">Welcome To Homepage</Link>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                             <span className="navbar-toggler-icon"></span>
                         </button>
@@ -38,4 +34,4 @@ const Navbar = (props: Props) => {
     );
 }
 
-export default Navbar;
+export default HompageCard

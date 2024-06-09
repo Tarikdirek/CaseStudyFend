@@ -13,6 +13,7 @@ import authService from "../services/authService";
 import tokenService from "../services/tokenService";
 import { getUser } from "../store/slices/getUserSlice";
 import { useNavigate } from "react-router-dom";
+import toastr from "toastr";
 
 const LoginSchema = Yup.object().shape({
   username: Yup.string().required("Required"),
@@ -43,7 +44,7 @@ console.log(user)
             if(tokenService.decodeToken()?.sub === undefined){
               console.log("Incorrect email or password ")
             }else{
-              console.log("Login Successfull")
+              toastr.success("Login Successfull")
               dispatch(isSignedIn(true));
               navigate("/adminpanel");
             }
